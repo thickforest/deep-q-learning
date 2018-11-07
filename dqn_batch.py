@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import random
 import gym
@@ -50,6 +51,15 @@ class DQNAgent:
                           np.amax(self.model.predict(next_state)[0]))
             target_f = self.model.predict(state)
             target_f[0][action] = target 
+            print state, action, reward, done, target_f
+            '''
+            [[-0.08233421 -0.97253618  0.12283784  1.66082135]] 1 1.0 False [[-0.6095501 1.1964443]]
+            [[ 0.02746244 -0.0292939  -0.00943843 -0.04523855]] 0 1.0 False [[1.1182936  0.08777545]]
+            [[ 0.03881277  1.15880455 -0.11154395 -1.81953759]] 1 1.0 False [[-1.4442904 0.90128833]]
+            [[-0.08908604 -0.35824058  0.13230137  0.69849136]] 0 1.0 False [[1.1843853  0.18136927]]
+            [[-0.11736576 -0.97571634  0.18423005  1.7459112 ]] 0 -10 True  [[-10.       0.21877399]]
+            '''
+
             # Filtering out states and targets for training
             states.append(state[0])
             targets_f.append(target_f[0])
