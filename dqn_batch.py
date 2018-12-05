@@ -79,6 +79,8 @@ class DQNAgent:
 
 if __name__ == "__main__":
     env = gym.make('CartPole-v1')
+    env.seed(1)
+    env = env.unwrapped # 取消限制，否则最高500分游戏结束
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
     agent = DQNAgent(state_size, action_size)
